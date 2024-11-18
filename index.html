@@ -1,36 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adivina el color</title>
 </head>
+
 <body>
-    <h1 class="titulo">Adivina el color</h1>
 
-    <section id="color-verdadero">
-        <p id="codigoRGB">RGB(?, ?, ?)</p>
-    </section>
+    <header>
+        <h1 class="titulo">Adivina el color</h1>
+    </header>
 
-    <section id="seleccion">
-        <article id="botones">
-            <button type="submit" class="btn btn1"></button>
-            <button type="submit" class="btn btn2"></button>
-            <button type="submit" class="btn btn3"></button>
-            <button type="submit" class="btn btn4"></button>
-        </article>
-        <article id="contadores">
-            <div id="contador-aciertos">
-                <h3>aciertos</h3>
-                <span id="aciertos"> 0</span>
+
+    <main>
+        <section id="color-verdadero">
+            <p id="codigoRGB">RGB(?, ?, ?)</p>
+        </section>
+        <section id="seleccion">
+
+            <!-- <div class="cajas" id="cajas">
+
+            </div> -->
+            <article id="botones">
+                <button type="submit" class="btn btn1"></button>
+                <button type="submit" class="btn btn2"></button>
+                <button type="submit" class="btn btn3"></button>
+                <button type="submit" class="btn btn4"></button>
+            </article>
+            <article id="contadores">
+                <div id="contador-aciertos">
+                    <h3>aciertos</h3>
+                    <span id="aciertos"> 0</span>
+                </div>
+                <div id="contador-fallos">
+                    <h3>fallos</h3>
+                    <span id="fallos"> 0</span>
+                </div>
+            </article>
+        </section>
+        <!-- MODAL ACIERTO-->
+        <div class="modal-ext hide modal-acierto">
+            <div class="modal-int">
+                <h2>¡Has acertado!</h2>
+                <div>
+                    <button class="btnAceptar">Siguiente</button>
+                </div>
             </div>
-            <div id="contador-fallos">
-                <h3>fallos</h3>
-                 <span id="fallos"> 0</span>
+        </div>
+        <!-- MODAL FALLO-->
+        <div class="modal-ext hide modal-fallo">
+            <div class="modal-int">
+                <h2>¡Has fallado!</h2>
+                <div>
+                    <button class="btnAceptar">Siguiente</button>
+                </div>
             </div>
-        </article>
-    </section>
+        </div>
+    </main>
+
+
+    <footer>
+
+    </footer>
 
     <script src="./script.js"></script>
 </body>
+
 </html>
