@@ -21,7 +21,7 @@ function colorAleatorio() {
 
 
 // COLOR CORRECTO
-const colorCorrecto = colorAleatorio()
+let colorCorrecto = colorAleatorio()
 
 
 // HACER QUE EL COLOR CORRECTO APAREZCA EN EL HTML
@@ -30,14 +30,14 @@ codigoRGB.textContent = colorCorrecto.toUpperCase();
 
 
 //GENERAR VARIACIONES
-const colorSimilar1 = `rgb(${red + 10}, ${green}, ${blue})`
-const colorSimilar2 = `rgb(${red}, ${green + 10}, ${blue})`
-const colorSimilar3 = `rgb(${red}, ${green}, ${blue + 10})`
+const colorSimilar1 = `rgb(${red + 20}, ${green}, ${blue})`
+const colorSimilar2 = `rgb(${red}, ${green + 20}, ${blue})`
+const colorSimilar3 = `rgb(${red}, ${green}, ${blue + 20})`
 
 
 
 // ARRAY COLORES
-const colores = [colorCorrecto]
+let colores = [colorCorrecto]
 colores.push(colorSimilar1);
 colores.push(colorSimilar2);
 colores.push(colorSimilar3);
@@ -56,6 +56,19 @@ const botones = document.getElementsByClassName("btn")
 // falta gestión de errores (creo)
 let contadorAciertos = 0
 let contadorFallos = 0
+let contadorAciertosTexto = document.getElementById('aciertos')
+let contadorFallosTexto = document.getElementById('fallos')
+
+
+
+function incrementarContadorAciertos() {
+    contadorAciertos++;
+}
+function incrementarContadorFallos() {
+    contadorFallos++;
+}
+
+
 
 for (let i = 0; i < botones.length; i++) {
     const boton = botones[i]
@@ -65,21 +78,165 @@ for (let i = 0; i < botones.length; i++) {
         if (boton.style.backgroundColor === colorCorrecto) {
 
             //toggle modal correcto
-            contadorAciertos++
+            // contadorAciertos += 1;
+            incrementarContadorAciertos();
+            contadorAciertosTexto.textContent = contadorAciertos
         } else {
             //toggle modal incorrecto
-            contadorFallos++
+            // contadorFallos += 1;
+            incrementarContadorFallos();
+            contadorFallosTexto.textContent = contadorFallos
+        }
+        if (contadorAciertos === 3) {
+            // Se gana
+            const ganar = document.createElement('div');
+            ganar.innerHTML = '<p>¡Enhorabuena! Has ganado.</p>';
+            document.body.appendChild(ganar);
+            console.log('ganar');
+
+            // setTimeout(() => {
+            //     contadorAciertos = 0;
+            //     contadorFallos = 0;
+            //     contadorAciertosTexto.textContent = contadorAciertos;
+            //     contadorFallosTexto.textContent = contadorFallos;
+            //     reset();
+            // }, 10000);
+            reset();
+        }
+
+        if (contadorFallos === 3) {
+            // Se pierde
+            const perder = document.createElement('div');
+            perder.innerHTML = '<p>¡Lo siento! Has perdido.</p>';
+            document.body.appendChild(perder);
+            console.log('perder');
+
+            // setTimeout(() => {
+            //     contadorAciertos = 0;
+            //     contadorFallos = 0;
+            //     contadorAciertosTexto.textContent = contadorAciertos;
+            //     contadorFallosTexto.textContent = contadorFallos;
+            //     reset();
+            // }, 10000);
+            reset();
         }
     })
-}
+};
 
-if (contadorAciertos === 3) {
-    //se gana
-}
 
-if (contadorFallos === 3) {
-    //se pierde
-}
+
+// function reset() {
+//     contadorAciertos = 0;
+//     contadorFallos = 0;
+//     //generar colores nuevos
+//     colorCorrecto = colorAleatorio();
+
+//     //cambiar colorDisplay para que coincida con colorElegido
+//     codigoRGB.textContent = colorCorrecto;
+
+//     //cambiar los colores de los cuadrados
+//     for (let i = 0; i < botones.length; i++) {
+//         const boton = botones[i]
+//         boton.style.backgroundColor = colores[i]
+    
+//         boton.addEventListener("click", () => {
+//             if (boton.style.backgroundColor === colorCorrecto) {
+    
+//                 //toggle modal correcto
+//                 // contadorAciertos++;
+//                 incrementarContadorAciertos();
+//                 contadorAciertosTexto.textContent = contadorAciertos
+//             } else {
+//                 //toggle modal incorrecto
+//                 // contadorFallos++;
+//                 incrementarContadorFallos();
+//                 contadorFallosTexto.textContent = contadorFallos
+//             }
+//             if (contadorAciertos === 3) {
+//                 // Se gana
+//                 const ganar = document.createElement('div');
+//                 ganar.innerHTML = '<p>¡Enhorabuena! Has ganado.</p>';
+//                 document.body.appendChild(ganar);
+//                 console.log('ganar');
+    
+//                 // setTimeout(() => {
+//                 //     contadorAciertos = 0;
+//                 //     contadorFallos = 0;
+//                 //     contadorAciertosTexto.textContent = contadorAciertos;
+//                 //     contadorFallosTexto.textContent = contadorFallos;
+//                 //     reset();
+//                 // }, 10000);
+//                 reset();
+//             }
+    
+//             if (contadorFallos === 3) {
+//                 // Se pierde
+//                 const perder = document.createElement('div');
+//                 perder.innerHTML = '<p>¡Lo siento! Has perdido.</p>';
+//                 document.body.appendChild(perder);
+//                 console.log('perder');
+    
+//                 // setTimeout(() => {
+//                 //     contadorAciertos = 0;
+//                 //     contadorFallos = 0;
+//                 //     contadorAciertosTexto.textContent = contadorAciertos;
+//                 //     contadorFallosTexto.textContent = contadorFallos;
+//                 //     reset();
+//                 // }, 10000);
+//                 reset();
+//             }
+//         })
+//     }
+// };
+
+
+
+
+
+
+
+
+
+
+// if (contadorAciertos === 3) {
+//     //se gana
+//     const ganar = document.createElement('div');
+//     const textoGanar = ganar.appendChild('p')
+//     textoGanar.textContent = '¡Enhorabuena! Has ganado.'
+//     console.log('ganar');
+
+    
+
+//     setTimeout(() => {
+//         contadorAciertos = 0;
+//         contadorFallos = 0;
+//     }, 10000);
+// }
+
+// if (contadorFallos === 3) {
+//     //se pierde
+//     const perder = document.createElement('div');
+//     const textoPerder = perder.appendChild('p')
+//     textoPerder.textContent = '¡Lo siento! Has perdido.'
+//     console.log('perder');
+
+    
+
+//     setTimeout(() => {
+//         contadorAciertos = 0;
+//         contadorFallos = 0;
+//     }, 10000);
+// }
+
+
+
+
+
+
+
+
+
+
 
 
 // ACTUALIZACION 18 NOV 19:00
@@ -87,6 +244,7 @@ if (contadorFallos === 3) {
 //     _gestión errores funcion de seleccion de botones
 //     _gestión de eventos de boton siguiente de los modales
 //     _Contadores de aciertos y fallos y respectivas funciones
+//      _Funcion para resetear el juego mirarla bien ya que no funciona
 
 
 
@@ -112,23 +270,3 @@ if (contadorFallos === 3) {
 //     })
 //     nuevoTurno()
 // }
-
-
-
-
-
-
-///////////
-// IDEAS
-// math random para los botones (de 1 a 4) y un for para comparar con el color correcto
-
-
-
-// function randomColors(num) {
-//     const arr = [];
-//     for (let i = 0; i < num; i++) {
-//         arr.push(colorAleatorio());
-//     }
-//     return arr;
-// }
-// console.log(randomColors());
