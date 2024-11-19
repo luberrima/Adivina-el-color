@@ -1,5 +1,10 @@
 'use strict';
-
+//ACTUALIZACION 19NOV
+// Falta por hacer:
+//      _¿gestión de errores?
+//      ACTUALIZAR COLORES CUANDO SE ACIERTA O SE FALLA (PUNTO 6 PDF)
+//      OCULTAR MODALES DE ACIERTO Y FALLO CUANDO SE GANA O SE PIERDE
+//      LOS PUTOS CONTADORES
 
 const modalAcierto = document.getElementById('modalAcierto')
 const modalFallo = document.getElementById('modalFallo')
@@ -57,11 +62,12 @@ function colorAleatorio() {
 }
 
 function iniciarJuego() {
+    
     contadorAciertos = 0;
     contadorFallos = 0;
     contadorAciertosTexto.textContent = '0';
     contadorFallosTexto.textContent = '0';
-    
+
     colorAleatorio();
     
     //GENERAR VARIACIONES
@@ -103,25 +109,25 @@ function iniciarJuego() {
         boton.style.backgroundColor = colores[i]
         
         boton.addEventListener("click", () => {
-            if (boton.style.backgroundColor === colorCorrecto) {
-                // modalAcierto.classList.toggle('hide')
-                
-                incrementarContadorAciertos();
-                contadorAciertosTexto.textContent = contadorAciertos
-            } else {
-                // modalFallo.classList.toggle('hide')
-                
-                incrementarContadorFallos();
-                contadorFallosTexto.textContent = contadorFallos
-                
-            }
+        if (boton.style.backgroundColor === colorCorrecto) {
+            modalAcierto.classList.toggle('hide')
+            // NO SE RESETEAN LOS COLORES UNA VEZ ACIERTAS  
+            incrementarContadorAciertos();
+            contadorAciertosTexto.textContent = contadorAciertos
+        } else {
+            modalFallo.classList.toggle('hide')
+            
+            incrementarContadorFallos();
+            contadorFallosTexto.textContent = contadorFallos
+            
+        }
         if (contadorAciertos === 3) {
-                // Se gana
-                //modal de ganar
-                modalGanar.classList.toggle("hide");
-                btnNextGanar.addEventListener("click", () => {
-                iniciarJuego();
-                reset();
+            // Se gana
+            //modal de ganar
+            modalGanar.classList.toggle("hide");
+            btnNextGanar.addEventListener("click", () => {
+            iniciarJuego();
+            // reset();
             })
         }
         
@@ -131,7 +137,7 @@ function iniciarJuego() {
             modalPerder.classList.toggle("hide");
             btnNextPerder.addEventListener("click", () => {
                 iniciarJuego();
-                reset();
+                // reset();
             })
             
         }
@@ -152,14 +158,14 @@ botonInicio.addEventListener('click', () => {
 
 
 // funcion para resetear el juego
-function reset() {
-        contadorAciertos = 0;
-        contadorFallos = 0;
-        aciertos.textContent = '0';
-        fallos.textContent = '0';
+// function reset() {
+//         contadorAciertos = 0;
+//         contadorFallos = 0;
+//         aciertos.textContent = '0';
+//         fallos.textContent = '0';
     
-    // colorAleatorio()
-}
+//     // colorAleatorio()
+// }
 
 
 
@@ -284,13 +290,6 @@ function reset() {
 //     _gestión de eventos de boton siguiente de los modales
 //     _Contadores de aciertos y fallos y respectivas funciones
 //      _Funcion para resetear el juego mirarla bien ya que no funciona
-
-//ACTUALIZACION 19NOV
-// Falta por hacer:
-//      _¿gestión de errores?
-//      _gestión eventos botón siguiente de los modales
-//      _gestión modales acierto y fallo
-//      _gestión modales ganar y perder
 
 
 
