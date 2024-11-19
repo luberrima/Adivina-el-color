@@ -4,9 +4,6 @@
     font-family: var(--font-family);
 }
 
-.hide {
-    display: none;
-}
 
 body {
     height: 100vh;
@@ -93,6 +90,65 @@ article#contadores {
     font-size: 18px;
 }
 
+
+/* MODALES */
+
+.hide {
+    display: none;
+}
+
+.modal-ext {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-black);
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* opacity: 0.7; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-int {
+    width: 300px;
+    height: 250px;
+    padding: 30px;
+    border-radius: 10px;
+    background: #fff;
+    z-index: 2;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.modal-int h2 {
+    font-size: 37px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 5px 20px;
+    margin-bottom: 20px;
+}
+
+.cerrar {
+    border: none;
+    color: var(--color-black);
+    text-decoration: none;
+    font-size: 22px;
+    padding: 10px 20px;
+    background-color: var(--color-white);
+    border: 2px solid var(--color-black);
+}
+
+.cerrar:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
 
 @media screen and (min-width: 768px) {
     main {
