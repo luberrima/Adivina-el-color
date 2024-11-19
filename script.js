@@ -76,52 +76,44 @@ for (let i = 0; i < botones.length; i++) {
 
     boton.addEventListener("click", () => {
         if (boton.style.backgroundColor === colorCorrecto) {
+            // const aciertosT = document.querySelector()
 
             //toggle modal correcto
             // contadorAciertos += 1;
             incrementarContadorAciertos();
             contadorAciertosTexto.textContent = contadorAciertos
         } else {
-            //toggle modal incorrecto
+            // toggle modal incorrecto
             // contadorFallos += 1;
             incrementarContadorFallos();
             contadorFallosTexto.textContent = contadorFallos
         }
         if (contadorAciertos === 3) {
             // Se gana
-            const ganar = document.createElement('div');
-            ganar.innerHTML = '<p>¡Enhorabuena! Has ganado.</p>';
-            document.body.appendChild(ganar);
-            console.log('ganar');
+           //modal de ganar
 
-            // setTimeout(() => {
-            //     contadorAciertos = 0;
-            //     contadorFallos = 0;
-            //     contadorAciertosTexto.textContent = contadorAciertos;
-            //     contadorFallosTexto.textContent = contadorFallos;
-            //     reset();
-            // }, 10000);
+            
             reset();
         }
 
         if (contadorFallos === 3) {
             // Se pierde
-            const perder = document.createElement('div');
-            perder.innerHTML = '<p>¡Lo siento! Has perdido.</p>';
-            document.body.appendChild(perder);
-            console.log('perder');
+           //modal de perder
 
-            // setTimeout(() => {
-            //     contadorAciertos = 0;
-            //     contadorFallos = 0;
-            //     contadorAciertosTexto.textContent = contadorAciertos;
-            //     contadorFallosTexto.textContent = contadorFallos;
-            //     reset();
-            // }, 10000);
+            
             reset();
         }
     })
 };
+
+//funcion para resetear el juego
+function reset() {
+    contadorAciertos = 0;
+    contadorFallos = 0;
+    aciertos.textContent = 'aciertos: 0';
+    fallos.textContent = 'fallos: 0';
+}
+
 
 
 
