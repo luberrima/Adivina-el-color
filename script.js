@@ -110,8 +110,8 @@ for (let i = 0; i < botones.length; i++) {
 function reset() {
     contadorAciertos = 0;
     contadorFallos = 0;
-    aciertos.textContent = 'aciertos: 0';
-    fallos.textContent = 'fallos: 0';
+    aciertos.textContent = '0';
+    fallos.textContent = '0';
 }
 
 
@@ -237,6 +237,13 @@ function reset() {
 //     _gestión de eventos de boton siguiente de los modales
 //     _Contadores de aciertos y fallos y respectivas funciones
 //      _Funcion para resetear el juego mirarla bien ya que no funciona
+
+//ACTUALIZACION 19NOV
+// Falta por hacer:
+//      _¿gestión de errores?
+//      _gestión eventos botón siguiente de los modales
+//      _gestión modales acierto y fallo
+//      _gestión modales ganar y perder
 
 
 

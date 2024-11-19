@@ -94,7 +94,8 @@ article#contadores {
 /* MODALES */
 
 .hide {
-    display: none;
+    /* display: none; */
+    visibility: hidden;
 }
 
 .modal-ext {
