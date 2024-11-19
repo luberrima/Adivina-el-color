@@ -42,10 +42,11 @@ main {
 p#codigoRGB {
     font-size: 30px;
     font-weight: 700;
+    text-transform: lowercase;
 }
 
 section#seleccion {
-    margin: 40px 20px 0 20px;
+    margin: 40px 45px 0 45px;
     padding-top: 40px;
     border-top: 2px solid black;
     display: flex;
