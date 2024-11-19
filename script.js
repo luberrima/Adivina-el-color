@@ -1,93 +1,103 @@
 'use strict';
 
 
-// const modalAcierto = document.getElementById('modalAcierto')
-// const modalFallo = document.getElementById('modalFallo')
+const modalAcierto = document.getElementById('modalAcierto')
+const modalFallo = document.getElementById('modalFallo')
+const modalGanar = document.getElementById('modalGanar')
+const modalPerder = document.getElementById('modalPerder')
+const btnNextGanar = document.getElementById("btnNextGanar")
+const btnNextPerder = document.getElementById("btnNextPerder")
 
-// const cerrarModal = document.getElementsByClassName('cerrar')
-// cerrarModal.addEventListener('click', () => {
-//         modalAcierto.classList.toggle('hide')
-//         modalFallo.classList.toggle('hide')
-//     } ) 
+const cerrarModalAcierto = document.getElementById("cerrarAcierto")
+cerrarModalAcierto.addEventListener('click', () => {
+        modalAcierto.classList.toggle('hide')
+    } );
 
-    // GENERAR COLOR ALEATORIO
-    let red
-    let green
-    let blue
-
-   
-   
+const cerrarModalFallo = document.getElementById("cerrarFallo")
+cerrarModalFallo.addEventListener('click', () => {
+        modalFallo.classList.toggle('hide')
+    } ); 
     
-    const codigoRGB = document.getElementById('codigoRGB');
+btnNextGanar.addEventListener('click', () => {
+    modalGanar.classList.toggle('hide')
+} ); 
 
-    
+btnNextPerder.addEventListener('click', () => {
+    modalPerder.classList.toggle('hide')
+} ); 
+// GENERAR COLOR ALEATORIO
 
-    // ASOCIAR COLORES A BOTONES
-    // falta gestión de errores (creo)
-    let contadorAciertos = 0
-    let contadorFallos = 0
-    let contadorAciertosTexto = document.getElementById('aciertos')
-    let contadorFallosTexto = document.getElementById('fallos')
+let red
+let green
+let blue
+
+
+
+const codigoRGB = document.getElementById('codigoRGB');
+
+
+
+// ASOCIAR COLORES A BOTONES
+// falta gestión de errores (creo)
+let contadorAciertos = 0
+let contadorFallos = 0
+let contadorAciertosTexto = document.getElementById('aciertos')
+let contadorFallosTexto = document.getElementById('fallos')
+
+// GENERAR NUM ALEATORIO
+function numeroAleatorio(min, max) {
+    return Math.floor((Math.random() * (max - min + 1)) + min);
+}
+console.log(numeroAleatorio(0, 255));
+function colorAleatorio() {
+    red = numeroAleatorio(0, 255);
+    green = numeroAleatorio(0, 255);
+    blue = numeroAleatorio(0, 255);
+    return `rgb(${red}, ${green}, ${blue})`;
+}
 
 function iniciarJuego() {
-    function numeroAleatorio(min, max) {
-        return Math.floor((Math.random() * (max - min + 1)) + min);
-    }
-    console.log(numeroAleatorio(0, 255));
-
-
-
-    function colorAleatorio() {
-        red = numeroAleatorio(0, 255);
-        green = numeroAleatorio(0, 255);
-        blue = numeroAleatorio(0, 255);
-        return `rgb(${red}, ${green}, ${blue})`;
-    }
     contadorAciertos = 0;
     contadorFallos = 0;
     contadorAciertosTexto.textContent = '0';
     contadorFallosTexto.textContent = '0';
-        // GENERAR NUM ALEATORIO
-
-     
+    
+    colorAleatorio();
+    
     //GENERAR VARIACIONES
     let colorSimilar1 = `rgb(${red + 20}, ${green}, ${blue})`
     let colorSimilar2 = `rgb(${red}, ${green + 20}, ${blue})`
     let colorSimilar3 = `rgb(${red}, ${green}, ${blue + 20})`
-
-
+    
+    // COLOR CORRECTO
+    let colorCorrecto = colorAleatorio()
+    let colores = [colorCorrecto]
+    
     // HACER QUE EL COLOR CORRECTO APAREZCA EN EL HTML
     codigoRGB.textContent = colorCorrecto;
-
-     // COLOR CORRECTO
-     let colorCorrecto = colorAleatorio()
-     let colores = [colorCorrecto]
-
+    
     // ARRAY COLORES
     colores.push(colorSimilar1);
     colores.push(colorSimilar2);
     colores.push(colorSimilar3);
-
+    
     console.log(colores)
-
+    
     // DESORDENAR COLORES EN EL ARRAY
     colores = colores.sort(() => Math.random() - 0.5);
-
-
+    
+    
     //COGER BOTONES DEL HTML
     const botones = document.getElementsByClassName("btn")
-
     
     
-
-
     function incrementarContadorAciertos() {
         contadorAciertos++;
     }
     function incrementarContadorFallos() {
         contadorFallos++;
     }
-
+    
     for (let i = 0; i < botones.length; i++) {
         const boton = botones[i]
         boton.style.backgroundColor = colores[i]
@@ -98,53 +108,58 @@ function iniciarJuego() {
                 
                 incrementarContadorAciertos();
                 contadorAciertosTexto.textContent = contadorAciertos
-        } else {
-            // modalFallo.classList.toggle('hide')
-            
-            incrementarContadorFallos();
-            contadorFallosTexto.textContent = contadorFallos
-
-        }
+            } else {
+                // modalFallo.classList.toggle('hide')
+                
+                incrementarContadorFallos();
+                contadorFallosTexto.textContent = contadorFallos
+                
+            }
         if (contadorAciertos === 3) {
-            // Se gana
-        //modal de ganar
-
-            
-            // reset();
+                // Se gana
+                //modal de ganar
+                modalGanar.classList.toggle("hide");
+                btnNextGanar.addEventListener("click", () => {
+                iniciarJuego();
+                reset();
+            })
         }
-
+        
         if (contadorFallos === 3) {
             // Se pierde
-        //modal de perder
-
+            //modal de perder
+            modalPerder.classList.toggle("hide");
+            btnNextPerder.addEventListener("click", () => {
+                iniciarJuego();
+                reset();
+            })
             
-            // reset();
         }
     })
 };
-    
+
 }
 
-  
+
 const modalInicio = document.getElementById('modalInicio')
 
 const botonInicio = document.getElementById('iniciar')
 botonInicio.addEventListener('click', () => {
     modalInicio.classList.toggle('hide')
-    iniciarJuego()
+    iniciarJuego();
 })
     
+
+
+// funcion para resetear el juego
+function reset() {
+        contadorAciertos = 0;
+        contadorFallos = 0;
+        aciertos.textContent = '0';
+        fallos.textContent = '0';
     
-    
-//funcion para resetear el juego
-// function reset() {
-//     contadorAciertos = 0;
-//     contadorFallos = 0;
-//     aciertos.textContent = '0';
-//     fallos.textContent = '0';
-    
-//     // colorAleatorio()
-// }
+    // colorAleatorio()
+}
 
 
 
