@@ -6,40 +6,21 @@
 //      OCULTAR MODALES DE ACIERTO Y FALLO CUANDO SE GANA O SE PIERDE
 //      LOS PUTOS CONTADORES
 
-const modalAcierto = document.getElementById('modalAcierto')
-const modalFallo = document.getElementById('modalFallo')
+// const modalAcierto = document.getElementById('modalAcierto')
+// const modalFallo = document.getElementById('modalFallo')
 const modalGanar = document.getElementById('modalGanar')
 const modalPerder = document.getElementById('modalPerder')
 const btnNextGanar = document.getElementById("btnNextGanar")
 const btnNextPerder = document.getElementById("btnNextPerder")
-
 const cerrarModalAcierto = document.getElementById("cerrarAcierto")
-cerrarModalAcierto.addEventListener('click', () => {
-        modalAcierto.classList.toggle('hide')
-    } );
-
 const cerrarModalFallo = document.getElementById("cerrarFallo")
-cerrarModalFallo.addEventListener('click', () => {
-        modalFallo.classList.toggle('hide')
-    } ); 
-    
-btnNextGanar.addEventListener('click', () => {
-    modalGanar.classList.toggle('hide')
-} ); 
-
-btnNextPerder.addEventListener('click', () => {
-    modalPerder.classList.toggle('hide')
-} ); 
-// GENERAR COLOR ALEATORIO
-
-let red
-let green
-let blue
 
 
-
+// COLOR
 const codigoRGB = document.getElementById('codigoRGB');
 
+//COGER BOTONES DEL HTML
+const botones = document.getElementsByClassName("btn")
 
 
 // ASOCIAR COLORES A BOTONES
@@ -49,18 +30,51 @@ let contadorFallos = 0
 let contadorAciertosTexto = document.getElementById('aciertos')
 let contadorFallosTexto = document.getElementById('fallos')
 
+
+// COLOR CORRECTO (GLOBAL)
+let colorCorrecto;
+
+
+// MODALES
+// cerrarModalAcierto.addEventListener('click', () => {
+//         modalAcierto.classList.toggle('hide')
+//     } );
+
+// cerrarModalFallo.addEventListener('click', () => {
+//         modalFallo.classList.toggle('hide')
+//     } ); 
+
+
+btnNextGanar.addEventListener('click', () => {
+    modalGanar.classList.toggle('hide')
+} ); 
+
+btnNextPerder.addEventListener('click', () => {
+    modalPerder.classList.toggle('hide')
+} ); 
+
+
 // GENERAR NUM ALEATORIO
 function numeroAleatorio(min, max) {
     return Math.floor((Math.random() * (max - min + 1)) + min);
 }
-console.log(numeroAleatorio(0, 255));
+// console.log(numeroAleatorio(0, 255));
+
+
+
+// GENERAR COLOR ALEATORIO
+
 function colorAleatorio() {
-    red = numeroAleatorio(0, 255);
-    green = numeroAleatorio(0, 255);
-    blue = numeroAleatorio(0, 255);
+    const red = numeroAleatorio(0, 255);
+    const green = numeroAleatorio(0, 255);
+    const blue = numeroAleatorio(0, 255);
     return `rgb(${red}, ${green}, ${blue})`;
 }
 
+
+// let red
+// let green
+// let blue
 
 
 function iniciarJuego() {
@@ -95,8 +109,7 @@ function iniciarJuego() {
     colores = colores.sort(() => Math.random() - 0.5);
     
     
-    //COGER BOTONES DEL HTML
-    const botones = document.getElementsByClassName("btn")
+
     
     
     function incrementarContadorAciertos() {
@@ -148,9 +161,11 @@ function iniciarJuego() {
 }
 
 
-const modalInicio = document.getElementById('modalInicio')
 
+// BOTÓN DE INICIO
+const modalInicio = document.getElementById('modalInicio')
 const botonInicio = document.getElementById('iniciar')
+
 botonInicio.addEventListener('click', () => {
     modalInicio.classList.toggle('hide')
     iniciarJuego();
