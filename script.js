@@ -1,10 +1,13 @@
 'use strict';
-//ACTUALIZACION 19NOV
+//ACTUALIZACION 20 NOV
 // Falta por hacer:
-//      _¿gestión de errores?
-//      ACTUALIZAR COLORES CUANDO SE ACIERTA O SE FALLA (PUNTO 6 PDF)
-//      OCULTAR MODALES DE ACIERTO Y FALLO CUANDO SE GANA O SE PIERDE
-//      LOS PUTOS CONTADORES
+// Deploy
+//favicon
+//terminar responsive
+//footer
+
+//luego al final:
+//por email entregar la ruta del proyecto URL del report
 
 // const modalAcierto = document.getElementById('modalAcierto')
 // const modalFallo = document.getElementById('modalFallo')
