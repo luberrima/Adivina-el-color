@@ -61,6 +61,8 @@ function colorAleatorio() {
     return `rgb(${red}, ${green}, ${blue})`;
 }
 
+
+
 function iniciarJuego() {
     
     contadorAciertos = 0;
@@ -71,12 +73,12 @@ function iniciarJuego() {
     colorAleatorio();
     
     //GENERAR VARIACIONES
+    let colorCorrecto = colorAleatorio()
     let colorSimilar1 = `rgb(${red + 20}, ${green}, ${blue})`
     let colorSimilar2 = `rgb(${red}, ${green + 20}, ${blue})`
     let colorSimilar3 = `rgb(${red}, ${green}, ${blue + 20})`
     
     // COLOR CORRECTO
-    let colorCorrecto = colorAleatorio()
     let colores = [colorCorrecto]
     
     // HACER QUE EL COLOR CORRECTO APAREZCA EN EL HTML
@@ -87,7 +89,7 @@ function iniciarJuego() {
     colores.push(colorSimilar2);
     colores.push(colorSimilar3);
     
-    console.log(colores)
+    // console.log(colores)
     
     // DESORDENAR COLORES EN EL ARRAY
     colores = colores.sort(() => Math.random() - 0.5);
@@ -126,9 +128,9 @@ function iniciarJuego() {
             //modal de ganar
             modalGanar.classList.toggle("hide");
             btnNextGanar.addEventListener("click", () => {
-            iniciarJuego();
-            // reset();
-            })
+                iniciarJuego();
+                // reset();
+                })
         }
         
         if (contadorFallos === 3) {
@@ -139,7 +141,6 @@ function iniciarJuego() {
                 iniciarJuego();
                 // reset();
             })
-            
         }
     })
 };
