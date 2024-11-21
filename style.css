@@ -67,6 +67,11 @@ article#botones {
     margin: 7px 7px;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: scale(1.1 , 1.1);
 }
 
 article#contadores {
@@ -135,7 +140,7 @@ article#contadores {
     margin-bottom: 20px;
 }
 
-.cerrar {
+.btnModal {
     color: var(--color-black);
     text-decoration: none;
     font-size: 22px;
@@ -144,7 +149,7 @@ article#contadores {
     border: 2px solid var(--color-black);
 }
 
-.cerrar:hover {
+.btnModal:hover {
     background-color: var(--color-black);
     color: var(--color-white);
 }
@@ -155,7 +160,22 @@ article#contadores {
         height: 70%;
         border: 1px solid green;
         display: flex;
+        flex-direction: row;
         justify-content: space-around;
         align-items: center;
+        
     }
+    section#seleccion {
+        margin: 20px;
+        padding: 20px;
+        border-left: 2px solid black;
+        border-top: none;
+    }
+    article#botones {
+        margin: 10px;
+        padding: 10px;
+        flex-wrap:nowrap;
+    }
+
+
 }
