@@ -1,14 +1,4 @@
 'use strict';
-//ACTUALIZACION 20 NOV
-// Falta por hacer:
-// Deploy
-//favicon
-//terminar responsive
-//footer
-//modo fiesta
-
-//luego al final:
-//por email entregar la ruta del proyecto URL del report
 
 // MODALES
 const modalGanar = document.getElementById('modalGanar')
@@ -17,6 +7,8 @@ const btnNextGanar = document.getElementById("btnNextGanar")
 const btnNextPerder = document.getElementById("btnNextPerder")
 const cerrarModalAcierto = document.getElementById("cerrarAcierto")
 const cerrarModalFallo = document.getElementById("cerrarFallo")
+const audioGanar = new Audio("sonidos/baptisterio-spice-made-with-Voicemod.mp3");
+const audioPerder = new Audio("sonidos/super-mario-death-sound-sound-effect.mp3");
 
 // COLOR
 const codigoRGB = document.getElementById('codigoRGB');
@@ -97,6 +89,7 @@ function verificarColor(boton) {
 
         if (contadorAciertos === 3) {
             modalGanar.classList.toggle("hide");
+            audioGanar.play()
             return;
         }
     } else {
@@ -106,7 +99,7 @@ function verificarColor(boton) {
 
         if (contadorFallos === 3) {
             modalPerder.classList.toggle("hide");
-
+            audioPerder.play()
             return;
         }
     }
