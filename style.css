@@ -7,10 +7,23 @@
 
 body {
     height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header img {
+    margin-top: 60px;
+    width: 40%;
 }
 
 h1 {
@@ -19,7 +32,7 @@ h1 {
     padding: 5px 20px;
     font-size: 38px;
     text-align: center;
-    margin: 20px 20px 0 20px;
+    margin: 10px 20px 0 20px;
     line-height: 50px;
 }
 
@@ -30,8 +43,7 @@ main {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    padding: 20px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 /* section#color-verdadero {} */
@@ -40,41 +52,62 @@ p#codigoRGB {
     font-size: 30px;
     font-weight: 700;
     text-transform: lowercase;
+    padding: 40px;
+}
+
+.dividerSection {
+    border-top: 2px solid black;
+    width: 60%;
 }
 
 section#seleccion {
-    margin: 40px 45px 0 45px;
-    padding-top: 40px;
-    border-top: 2px solid black;
+    /* margin: 40px 65px 0 100px; */
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
 
-article {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 article#botones {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-areas:
+        "btn1 btn2"
+        "btn3 btn4";
 }
 
 .btn {
-    padding: 55px;
-    margin: 7px 7px;
+    padding: 50px;
+    margin: 10px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
 }
 
+.btn1 {
+    grid-area: btn1;
+}
+
+.btn2 {
+    grid-area: btn2;
+}
+
+.btn3 {
+    grid-area: btn3;
+}
+
+.btn4 {
+    grid-area: btn4;
+}
+
 .btn:hover {
-    transform: scale(1.1 , 1.1);
+    transform: scale(1.1);
 }
 
 article#contadores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 30px;
 }
 
@@ -121,7 +154,7 @@ article#contadores {
 
 .modal-int {
     width: 300px;
-    height: 250px;
+    height: 300px;
     padding: 30px;
     border-radius: 10px;
     background: #fff;
@@ -132,12 +165,18 @@ article#contadores {
     align-items: center;
 }
 
+.modal-int img {
+    margin: 10px 0 20px 0;
+    width: 40%;
+}
+
 .modal-int h2 {
     font-size: 37px;
+    text-align: center;
     background-color: var(--color-black);
     color: var(--color-white);
-    padding: 5px 20px;
-    margin-bottom: 20px;
+    padding: 5px 10px;
+    margin-bottom: 30px;
 }
 
 .btnModal {
@@ -145,6 +184,7 @@ article#contadores {
     text-decoration: none;
     font-size: 22px;
     padding: 10px 20px;
+    margin-bottom: 40px;
     background-color: var(--color-white);
     border: 2px solid var(--color-black);
 }
@@ -154,27 +194,59 @@ article#contadores {
     color: var(--color-white);
 }
 
-@media screen and (min-width: 768px) {
+/* FOOTER */
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media screen and (min-width: 1080px) {
+    header img {
+        width: 40%;
+        margin: 0;
+    }
+
     main {
         width: 80%;
-        height: 70%;
-        border: 1px solid green;
-        display: flex;
+        height: 65%;
         flex-direction: row;
         justify-content: space-around;
-        align-items: center;
-        
+        margin: 0;
     }
+
+    p#codigoRGB {
+        padding: 50px;
+    }
+
+    .dividerSection {
+        border-left: 2px solid black;
+        border-top: none;
+        width: 0;
+        height: 40%;
+        position: absolute;
+    }
+
     section#seleccion {
         margin: 20px;
         padding: 20px;
-        border-left: 2px solid black;
         border-top: none;
     }
+
     article#botones {
         margin: 10px;
         padding: 10px;
-        flex-wrap:nowrap;
+        flex-wrap: nowrap;
+    }
+
+    .btn {
+        padding: 60px;
+    }
+
+    .footer {
+        margin-bottom: 30px;
     }
 
 

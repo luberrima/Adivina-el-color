@@ -5,6 +5,7 @@
 //favicon
 //terminar responsive
 //footer
+//modo fiesta
 
 //luego al final:
 //por email entregar la ruta del proyecto URL del report
