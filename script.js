@@ -9,6 +9,8 @@ const cerrarModalAcierto = document.getElementById("cerrarAcierto")
 const cerrarModalFallo = document.getElementById("cerrarFallo")
 const audioGanar = new Audio("sonidos/baptisterio-spice-made-with-Voicemod.mp3");
 const audioPerder = new Audio("sonidos/super-mario-death-sound-sound-effect.mp3");
+audioGanar.volume = 0.1;
+audioPerder.volume = 0.5;
 
 // COLOR
 const codigoRGB = document.getElementById('codigoRGB');
@@ -28,11 +30,15 @@ let colorCorrecto;
 // EVENTOS BOTON SIGUIENTE
 btnNextGanar.addEventListener('click', () => {
     modalGanar.classList.toggle('hide')
+    audioGanar.pause();
+    audioGanar.currentTime = 0;
     iniciarJuego();
 });
 
 btnNextPerder.addEventListener('click', () => {
     modalPerder.classList.toggle('hide')
+    audioPerder.pause();
+    audioPerder.currentTime = 0;
     iniciarJuego();
 });
 
