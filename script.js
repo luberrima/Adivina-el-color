@@ -3,10 +3,6 @@
 // MODALES
 const modalGanar = document.getElementById('modalGanar')
 const modalPerder = document.getElementById('modalPerder')
-const btnNextGanar = document.getElementById("btnNextGanar")
-const btnNextPerder = document.getElementById("btnNextPerder")
-const cerrarModalAcierto = document.getElementById("cerrarAcierto")
-const cerrarModalFallo = document.getElementById("cerrarFallo")
 const audioGanar = new Audio("sonidos/baptisterio-spice-made-with-Voicemod.mp3");
 const audioPerder = new Audio("sonidos/super-mario-death-sound-sound-effect.mp3");
 audioGanar.volume = 0.1;
@@ -18,6 +14,71 @@ const codigoRGB = document.getElementById('codigoRGB');
 // BOTONES
 const botones = document.getElementsByClassName("btn")
 
+// BOTÓN DE INICIO
+const modalInicio = document.getElementById('modalInicio')
+
+//MODOS
+const botonModoFacil = document.getElementById("btnModoFacil")
+const botonModoDificil = document.getElementById("btnModoDificil")
+const botonModoFacilGanar = document.getElementById("btnModoFacilGanar")
+const botonModoDificilGanar = document.getElementById("btnModoDificilGanar")
+const botonModoFacilPerder = document.getElementById("btnModoFacilPerder")
+const botonModoDificilPerder = document.getElementById("btnModoDificilPerder")
+
+let modoFacil
+let modoDificil
+
+// modos inicio
+botonModoFacil.addEventListener("click", () => {
+    modalInicio.classList.toggle('hide')
+    modoFacil = true
+    iniciarJuego();
+})
+
+botonModoDificil.addEventListener("click", () => {
+    modalInicio.classList.toggle('hide')
+    modoDificil = true
+    iniciarJuego();
+})
+
+// modos ganar
+botonModoFacilGanar.addEventListener("click", () => {
+    modalGanar.classList.toggle('hide')
+    modoDificil = false
+    modoFacil = true
+    audioGanar.pause();
+    audioGanar.currentTime = 0;
+    iniciarJuego();
+})
+
+botonModoDificilGanar.addEventListener("click", () => {
+    modalGanar.classList.toggle('hide')
+    modoFacil = false
+    modoDificil = true
+    audioGanar.pause();
+    audioGanar.currentTime = 0;
+    iniciarJuego();
+})
+
+// modos perder
+botonModoFacilPerder.addEventListener("click", () => {
+    modalPerder.classList.toggle('hide')
+    modoDificil = false
+    modoFacil = true
+    audioPerder.pause();
+    audioPerder.currentTime = 0;
+    iniciarJuego();
+})
+
+botonModoDificilPerder.addEventListener("click", () => {
+    modalPerder.classList.toggle('hide')
+    modoFacil = false
+    modoDificil = true
+    audioPerder.pause();
+    audioPerder.currentTime = 0;
+    iniciarJuego();
+})
+
 // CONTADORES
 let contadorAciertosTexto = document.getElementById('aciertos')
 let contadorFallosTexto = document.getElementById('fallos')
@@ -26,21 +87,6 @@ let contadorFallos = 0
 
 // COLOR CORRECTO (GLOBAL)
 let colorCorrecto;
-
-// EVENTOS BOTON SIGUIENTE
-btnNextGanar.addEventListener('click', () => {
-    modalGanar.classList.toggle('hide')
-    audioGanar.pause();
-    audioGanar.currentTime = 0;
-    iniciarJuego();
-});
-
-btnNextPerder.addEventListener('click', () => {
-    modalPerder.classList.toggle('hide')
-    audioPerder.pause();
-    audioPerder.currentTime = 0;
-    iniciarJuego();
-});
 
 // GENERAR NUM ALEATORIO
 function numeroAleatorio(min, max) {
@@ -59,7 +105,6 @@ function colorAleatorio() {
     return `rgb(${red}, ${green}, ${blue})`;
 }
 
-
 // FUNCIÓN GENERAR NUEVOS COLORES
 function nuevosColores() {
     // color correcto
@@ -77,12 +122,22 @@ function nuevosColores() {
     // texto html
     codigoRGB.textContent = colorCorrecto;
 
+    // modos
+    if (modoFacil) {
+        codigoRGB.style.backgroundColor = colorCorrecto
+    }
+    if (modoDificil) {
+        codigoRGB.style.backgroundColor = "#fff"
+    }
+
     // asignar colores a los botones
     for (let i = 0; i < botones.length; i++) {
         botones[i].style.backgroundColor = colores[i];
         botones[i].addEventListener('click', verificarColor);
     }
+
 }
+
 
 // FUNCIÓN VERIFICAR COLOR CORRECTO
 function verificarColor(boton) {
@@ -123,13 +178,3 @@ function iniciarJuego() {
 
     nuevosColores();
 }
-
-
-// BOTÓN DE INICIO
-const modalInicio = document.getElementById('modalInicio')
-const botonInicio = document.getElementById('iniciar')
-
-botonInicio.addEventListener('click', () => {
-    modalInicio.classList.toggle('hide')
-    iniciarJuego();
-})
