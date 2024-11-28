@@ -72,6 +72,7 @@ p#codigoRGB {
     text-transform: lowercase;
     padding: 30px;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .dividerSection {
